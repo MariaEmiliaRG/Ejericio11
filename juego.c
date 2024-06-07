@@ -22,10 +22,10 @@ typedef struct {
 void imprimirPregunta(Pregunta pregunta) {
     //AGREGAR LA IMPLEMENTACIÓN PARA IMPRIMIR EN CONSOLA LA PREGUNTA Y LAS OPCIONES.
     //NO MODIFIQUES LA FIRMA DE LA FUNCIÓN.
-    printf("%s", pregunta.pregunta)
+    printf("%s", pregunta.pregunta);
     for (int i = 0; i < 4; i++)
     {
-	    printf("%s", pregunta.opciones[i])
+	    printf("%s", pregunta.opciones[i]);
 	}
 }
 
@@ -38,7 +38,10 @@ void imprimirPregunta(Pregunta pregunta) {
 char capturarRespuesta() {
     //AGREGAR LA IMPLEMENTACIÓN PARA LEER LA RESPUESTA DEL JUGADOR.
     //NO MODIFIQUES LA FIRMA DE LA FUNCIÓN.
-    char respuesta = getchar();
+    fflush(stdin);
+    char respuesta = getc(stdin);
+    getc(stdin);
+    fflush(stdin);
     return respuesta;
 }
 
@@ -55,13 +58,13 @@ char capturarRespuesta() {
 int verificarRespuesta(Pregunta pregunta, char respuesta) {
     //AGREGAR LA IMPLEMENTACIÓN PARA VERIFICAR SI RESPONDIÓ BIEN LA PREGUNTA.
     //NO MODIFIQUES LA FIRMA DE LA FUNCIÓN. 
-    if (pregunta.respuestacorrecta == respuesta)
+    if (pregunta.respuestaCorrecta == respuesta)
     {
-		printf("respuesta correcta")
+		printf("respuesta correcta \n");
 	}
 	else 
 	{
-		printf("respuesta incorrecta");
+		printf("respuesta incorrecta \n");
 	}
 }
 
@@ -71,7 +74,7 @@ int main() {
     int puntaje = 0;
     int totalPreguntas = 8;
     char respuesta;
-    Pregunta preguntas; 
+    Pregunta pregunta; 
 
     printf("¡Bienvenido al juego de trivia sobre Git y GitHub!\n");
 
@@ -101,7 +104,7 @@ int main() {
 
     for (int i = 0; i < totalPreguntas; i++){
         pregunta = preguntas[i];
-        imprimirPregunta(i); 
+        imprimirPregunta(pregunta); 
         respuesta = capturarRespuesta();
         if (verificarRespuesta(pregunta, respuesta)){
             puntaje ++; 
